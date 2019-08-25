@@ -68,7 +68,7 @@ class Board
     end
 
     def too_many_cards(number_of_cards)
-        possible_number_of_cards = (empty_tableau_piles.downto(1).each(&:sum) + 1) * (empty_freecell_piles + 1)
+        possible_number_of_cards = (empty_tableau_piles.downto(1).inject(&:+) + 1) * (empty_freecell_piles + 1)
         if number_of_cards > possible_number_of_cards
             raise "Does not have enough empty Freecell and Tablaeu piles to move"
         end
@@ -122,8 +122,8 @@ class Board
 end
 
 if __FILE__ == $PROGRAM_NAME
-    # b = Board.new([Card.new(:spades, :ace)])
-    b = Board.new
+    b = Board.new([Card.new(:spades, :ace)])
+    # b = Board.new
 
     until b.won?
         system("clear")

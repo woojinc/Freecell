@@ -19,6 +19,7 @@ class TableauPile < Pile
     end
 
     def valid_move?(moving_cards)
+        return true if pile.empty?
         cards = [self[-1]] + moving_cards
         valid_combining_card?(cards)
     end
